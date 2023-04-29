@@ -26,50 +26,6 @@ public class AnimatorController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (movement.jumpTimer != 0)
-        {
-            //LogComponent.Write("Preparing to Jump");
-        }
-        if (movement.attackTimer != 0 || movement.attackQueue)
-        {
-
-        }
-        if (movement.onGround)
-        {
-            if (Mathf.Abs(rb.velocity.x) > 0.1)
-            {
-                if (rb.velocity.x > 0)
-                {
-                   // LogComponent.Write("Run R");
-                }
-                else if (rb.velocity.x < 0)
-                {
-                   // LogComponent.Write("Run L");
-                }
-            }
-            else
-            {
-                //LogComponent.Write("Idling");
-            }
-        }
-        else
-        {
-            if (movement.touchWall != 0)
-            {
-               // LogComponent.Write("Sliding");
-            }
-            else
-            {
-                if (rb.velocity.y > 0)
-                {
-                   // LogComponent.Write("Flying up");
-                }
-                else
-                {
-                   // LogComponent.Write("Flying down");
-                }
-            }
-        }
     }
 }
 

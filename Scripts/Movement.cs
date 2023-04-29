@@ -43,9 +43,8 @@ public class Movement : Perception
     public bool attacking { get; private set; }
     [SerializeField]
     List<string> timerActions = new List<string>();
-    delegate void TimerEventHandler();
-    TimerEventHandler _timerEvent;
-    event TimerEventHandler timerAction
+    Action _timerEvent;
+    event Action timerAction
     {
         add
         {
@@ -65,11 +64,16 @@ public class Movement : Perception
 
     public bool sliding { get; private set; }
     public bool attached { get; private set; }
+
+    public Routine attackRoutine;
+    public Routine attachRoutine=new Routine(1);
     private void Start()
     {
         base.Start();
         _timerEvent = () => { };
-        attackAction += Attach;
+        attackRoutine = new Routine(activeWeapon.time, AttackAction, "attack");
+        timerAction += attackRoutine;
+        timerAction += attachRoutine;
     }
 
     protected void FixedUpdate()
@@ -80,8 +84,8 @@ public class Movement : Perception
         if (touchWall != 0 && input.y > -0.5) Slide();
         StayAttached();
         Move();
-
-        LogComponent.Write(attackQueue + "  " + attackTimer);
+        attacking = attackRoutine;
+        attaching = attachRoutine;
         _timerEvent.Invoke();
     }
     void Move()
@@ -137,40 +141,23 @@ public class Movement : Perception
             jumpEvent.Invoke();
         }
     }
-    Action attackAction = () => { };
-    [field: SerializeField]
-    public bool attackQueue { get; private set; }
-    Action onAttackFinish = () => { };
-
     public void Attack()
     {
-        if (attacking) return;
-        if (attackTimer != 0 && attackQueue == true) return;
-        else if (attackTimer != 0)
+        if (!attackRoutine)
         {
-            onAttackFinish = Attack;
-            onAttackFinish += () => attacking = true;
-            attackQueue = true;
-            return;
+            attackRoutine.Start();
         }
-        attackCounter++;
-        timerAction += AttackWait;
+        else if (!attackRoutine.callOnExit)
+        {
+            attackRoutine.InvokeOnExit(Attack);
+        }
     }
-    void AttackWait()
+    void AttackAction()
     {
-        if (attackTimer == 0) attacking = true;
-        attackTimer++;
-        attackAction();
-        if (attackTimer >= activeWeapon.time)
-        {
-            attackTimer = 0;
-            timerAction -= AttackWait;
-            attackQueue = false;
-            attacking = false;
-            onAttackFinish.Invoke();
-            onAttackFinish = () => { };
-        }
-        LogComponent.Write("" + attackTimer + " " + attacking);
+        Debug.DrawRay(transform.localPosition, lastDir, Color.blue);
+
+        if (attached) Detach();
+        else Attach();
     }
     public int lastDirX { get; private set; }
     void GetLastDir()
@@ -193,20 +180,6 @@ public class Movement : Perception
     }
     bool CastAttachingRay()
     {
-        Vector2 direction = lastDir;
-        int rayLength = 2;//Weapon's length
-        /*RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, rayLength);
-        print("cock");
-        Debug.DrawRay(transform.position, direction * rayLength, Color.green, 5f);
-        Surface surface;
-        foreach (var hit in hits)
-        {
-            if (hit.transform.TryGetComponent(out surface))
-            {
-                return !surface.Hard;
-            }
-        }
-        return false;*/
         if (lastDir.y == 0) return !isHardWall;
         else if(FloorSurface!=null)return !FloorSurface.Hard;
         return false;
@@ -234,32 +207,18 @@ public class Movement : Perception
     }
     [field:SerializeField]
     public bool attaching { get; private set; }=false;
-    void AttachEvent() { timerAction -= AttachEvent; attaching = false; }
     void Attach()
     {
         if (isHardWall&&!CastAttachingRay()) return;
-        attaching = true;
-        timerAction+=AttachEvent;
+        attachRoutine.Start();
         attached = true;
-        attackQueue = false;
-        timerAction -= AttackWait;
-        attacking = false;
-        onAttackFinish = () => { };
-        attackAction += Detach;
-        attackAction -= Attach;
-        attackTimer = 0;
+        attackRoutine.Stop();
     }
     void Detach()
     {
-        attaching = true;
-        timerAction += AttachEvent;
+        attachRoutine.Start();
         attached = false;
-        timerAction -= AttackWait;
-        attacking = false;
-        attackQueue = false;
-        attackTimer = 0;
-        attackAction -= Detach;
-        attackAction += Attach;
+        attackRoutine.Stop();
     }
 }
 public class Weapon
