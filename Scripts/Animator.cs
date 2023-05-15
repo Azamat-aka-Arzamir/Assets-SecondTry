@@ -45,8 +45,9 @@ public class State
         }
         private set
         {
+
             _frameNumber = value % frameCount;
-            if(value>=frameCount&&onlyOnce)active = false;
+            if (_frameNumber == 0&&onlyOnce) active = false;
         }
     }
     public bool active { get; private set; }
@@ -88,11 +89,15 @@ public class State
             }
         }
         var dif = LogComponent.frameCount - lastFrame;
-        if (dif / frameLength > 0)
+        if (dif == frameLength)
         {
             lastFrame = LogComponent.frameCount;
-            if (active) frameNumber ++;
-            else frameNumber = 0;
+            if (active) frameNumber++;
+        }
+        if (!active)
+        {
+            frameNumber = 0;
+            lastFrame = LogComponent.frameCount;
         }
     }
 }

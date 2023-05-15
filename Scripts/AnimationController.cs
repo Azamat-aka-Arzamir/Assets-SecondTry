@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class AnimationController : MonoBehaviour
     public string partName { get; private set; }
     [field: SerializeField]
     public string[] statesPriority { get; private set; }
+    [field: SerializeField]
+    public string[] whenChangeSide { get; private set; }
     public string currentStateName { get; private set; }
     public Animation currentAnimation { get; private set; }
 #if UNITY_EDITOR
@@ -32,9 +35,13 @@ public class AnimationController : MonoBehaviour
     }
 
 #endif
+    public bool ChangeLayerOnTurn;
+
+    float zPos;
     // Start is called before the first frame update
     void Start()
     {
+        zPos = transform.localPosition.z;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator.animatorStateTimer += ChangeSprite;
     }
@@ -55,17 +62,8 @@ public class AnimationController : MonoBehaviour
         }
         bool side = !animator.states.Find(x => x.name == "L").active;
 
-        //DELETE
-        if (partName == "Sword")
-        {
-            if (side) transform.localPosition = Vector3.back;
-            else transform.localPosition = Vector3.forward;
-        }
-        if (partName == "Shield")
-        {
-            if (!side) transform.localPosition = Vector3.back;
-            else transform.localPosition = Vector3.forward;
-        }
+
+
 
 
 
@@ -73,5 +71,17 @@ public class AnimationController : MonoBehaviour
         currentAnimation = AnimationSlicer.animations.Find(x => x.partName == partName && x.boolSide == side && x.name == currentStateName);
         if (currentState != null) spriteRenderer.sprite = currentAnimation.GetSprite(currentState.frameNumber);
         else throw new System.Exception("Smth's wrong");
+
+        int zIndex = 1;
+        if (ChangeLayerOnTurn)
+        {
+            if (!side) zIndex *= -1;
+        }
+        if (whenChangeSide.Contains(currentAnimation.name))
+        {
+            zIndex *= -1;
+        }
+        transform.localPosition=new Vector3(transform.localPosition.x,transform.localPosition.y,zPos*zIndex);
+
     }
 }

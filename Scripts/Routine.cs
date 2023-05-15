@@ -16,8 +16,11 @@ public class Routine
 
     public static implicit operator Action(Routine r) => r.Update;
     public static implicit operator bool(Routine r) => r.active;
+    private int lastUpdate=0;
     void Update()
     {
+        if (lastUpdate == LogComponent.frameCount) return;
+        lastUpdate=LogComponent.frameCount;
         if (timer < length)
         {
             timer++;
@@ -26,6 +29,7 @@ public class Routine
         }
         else if (active)
         {
+            lastUpdate = 0;
             active = false;
             exit();
             exit = () => { };
@@ -36,24 +40,28 @@ public class Routine
     {
         length = _length;
         action = () => { };
+        exit = () => { };
         timer = _length;
     }
     public Routine(int _length, Action _action)
     {
         length = _length;
         action = _action;
+        exit = () => { };
         timer = _length;
     }
     public Routine(int _length, Action _action,string _name)
     {
         length = _length;
         action = _action;
+        exit = () => { };
         name = _name;
         timer = _length;
     }
     public void Start()
     {
         timer = 0;
+        Update();
     }
     public void Stop()
     {

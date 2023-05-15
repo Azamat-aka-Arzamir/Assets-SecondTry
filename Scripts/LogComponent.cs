@@ -37,7 +37,7 @@ public class LogComponent : MonoBehaviour
 
     public delegate void VoidEvent();
     private static string LogContent = "";
-    public static event VoidEvent timerEvent = () => { };
+    public static event Action timerEvent = () => { };
     public static int frameCount { get; private set; }
     static void InvokeTimer()
     {

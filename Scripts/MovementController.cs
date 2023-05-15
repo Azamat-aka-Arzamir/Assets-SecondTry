@@ -38,11 +38,27 @@ public class MovementController : MonoBehaviour
         {
             jumpTimer = 0;
             timerEvent += CountJump;
+            if(!player.jumpPrepareRoutine)player.jumpPrepareRoutine.Start();
+            Debug.Log("Space Pressed");
         }
         if (context.phase == InputActionPhase.Canceled)
         {
             timerEvent -= CountJump;
-            if(jumpTimer!=0) SendJump();
+            if(jumpTimer!=0)SendJump();
+        }
+    }
+    public void GetRoll(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            player.rollRoutine.Start();
+        }
+    }
+    public void GetWeaponChange(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            player.ChangeWeapon();
         }
     }
     void CountJump()
@@ -59,7 +75,7 @@ public class MovementController : MonoBehaviour
     {
         float jumpForce = (float)jumpTimer / JumpHoldTime;
         player.Jump(jumpForce);
-        Debug.Log("Space Pressed");
+        Debug.Log(jumpTimer);
     }
     public void GetAttack(InputAction.CallbackContext context)
     {
