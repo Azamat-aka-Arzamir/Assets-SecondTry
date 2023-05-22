@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1157efb601a64bb609275d98ba3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1526067994}
+  <animator>k__BackingField: {fileID: 1526067994}
   <partName>k__BackingField: Sword
   <statesPriority>k__BackingField:
   - Flip
@@ -797,7 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1157efb601a64bb609275d98ba3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1526067994}
+  <animator>k__BackingField: {fileID: 1526067994}
   <partName>k__BackingField: Head
   <statesPriority>k__BackingField:
   - Flip
@@ -921,7 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1157efb601a64bb609275d98ba3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1526067994}
+  <animator>k__BackingField: {fileID: 1526067994}
   <partName>k__BackingField: Body
   <statesPriority>k__BackingField:
   - Flip
@@ -1045,7 +1045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1157efb601a64bb609275d98ba3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1526067994}
+  <animator>k__BackingField: {fileID: 1526067994}
   <partName>k__BackingField: Crest
   <statesPriority>k__BackingField:
   - Flip
@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1157efb601a64bb609275d98ba3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1526067994}
+  <animator>k__BackingField: {fileID: 1526067994}
   <partName>k__BackingField: Far hand
   <statesPriority>k__BackingField:
   - Flip
@@ -1526,7 +1526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1157efb601a64bb609275d98ba3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1526067994}
+  <animator>k__BackingField: {fileID: 1526067994}
   <partName>k__BackingField: Shield
   <statesPriority>k__BackingField:
   - Flip
@@ -1573,7 +1573,6 @@ GameObject:
   - component: {fileID: 1526067992}
   - component: {fileID: 1526067990}
   - component: {fileID: 1526067993}
-  - component: {fileID: 1526067995}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1891,33 +1890,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1526067985}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cc9fa5faacb8764e920823c82af9375, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1526067994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526067985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4822df9415f56094bb8fb0efac8ed7c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  states: []
-  activeStates: 0
---- !u!114 &1526067995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526067985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5208e3f58a9c5f43840c40199546da4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ffc3897f3f66ac47acd015b3229c372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   L:
@@ -3002,6 +2975,21 @@ MonoBehaviour:
   - {fileID: -8603460687863978806, guid: 842390ac28bccc846bbda91e9834f0ec, type: 3}
   - {fileID: 6002826900386515429, guid: 842390ac28bccc846bbda91e9834f0ec, type: 3}
   - {fileID: 8648215401741696243, guid: 842390ac28bccc846bbda91e9834f0ec, type: 3}
+--- !u!114 &1526067994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526067985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4822df9415f56094bb8fb0efac8ed7c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animations: []
+  states: []
+  activeStates: 0
 --- !u!1 &1625985197
 GameObject:
   m_ObjectHideFlags: 0
@@ -3097,7 +3085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1157efb601a64bb609275d98ba3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1526067994}
+  <animator>k__BackingField: {fileID: 1526067994}
   <partName>k__BackingField: Legs
   <statesPriority>k__BackingField:
   - Flip
@@ -3221,7 +3209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1157efb601a64bb609275d98ba3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1526067994}
+  <animator>k__BackingField: {fileID: 1526067994}
   <partName>k__BackingField: Close hand
   <statesPriority>k__BackingField:
   - Flip
@@ -3345,7 +3333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1157efb601a64bb609275d98ba3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1526067994}
+  <animator>k__BackingField: {fileID: 1526067994}
   <partName>k__BackingField: Gun
   <statesPriority>k__BackingField:
   - Flip
@@ -3434,6 +3422,7 @@ GameObject:
   - component: {fileID: 1962640994}
   - component: {fileID: 1962641001}
   - component: {fileID: 1962641000}
+  - component: {fileID: 1962641002}
   m_Layer: 0
   m_Name: Luna
   m_TagString: Untagged
@@ -3489,6 +3478,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4822df9415f56094bb8fb0efac8ed7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animations:
+  - _speed: 7
+    _partName: Main
+    _name: Idle
+    _side: Right
+    _sprites:
+    - {fileID: -3555193603491730397, guid: 9ef5e9a7ff68b884ab3dd18703078d5b, type: 3}
+  - _speed: 7
+    _partName: Main
+    _name: Idle
+    _side: Left
+    _sprites:
+    - {fileID: 2369967881150810969, guid: 79353aa31d0609d4b8c24c024373dd19, type: 3}
+  - _speed: 7
+    _partName: Main
+    _name: Walk
+    _side: Right
+    _sprites:
+    - {fileID: -3555193603491730397, guid: 9ef5e9a7ff68b884ab3dd18703078d5b, type: 3}
+    - {fileID: 8379160989363966683, guid: 9ef5e9a7ff68b884ab3dd18703078d5b, type: 3}
+    - {fileID: -3555193603491730397, guid: 9ef5e9a7ff68b884ab3dd18703078d5b, type: 3}
+    - {fileID: -2844625395755858901, guid: 9ef5e9a7ff68b884ab3dd18703078d5b, type: 3}
+  - _speed: 7
+    _partName: Main
+    _name: Walk
+    _side: Left
+    _sprites:
+    - {fileID: 2369967881150810969, guid: 79353aa31d0609d4b8c24c024373dd19, type: 3}
+    - {fileID: -9183334565884312899, guid: 79353aa31d0609d4b8c24c024373dd19, type: 3}
+    - {fileID: 2369967881150810969, guid: 79353aa31d0609d4b8c24c024373dd19, type: 3}
+    - {fileID: 5602367248573789879, guid: 79353aa31d0609d4b8c24c024373dd19, type: 3}
+  - _speed: 7
+    _partName: Main
+    _name: Eat
+    _side: Right
+    _sprites:
+    - {fileID: -3970117089884462677, guid: 9ef5e9a7ff68b884ab3dd18703078d5b, type: 3}
+  - _speed: 7
+    _partName: Main
+    _name: Eat
+    _side: Left
+    _sprites:
+    - {fileID: 8129462234797576079, guid: 79353aa31d0609d4b8c24c024373dd19, type: 3}
+  - _speed: 7
+    _partName: Main
+    _name: Die
+    _side: Right
+    _sprites:
+    - {fileID: -2271847640634562682, guid: 9ef5e9a7ff68b884ab3dd18703078d5b, type: 3}
+    - {fileID: 8373499883077804328, guid: 9ef5e9a7ff68b884ab3dd18703078d5b, type: 3}
+    - {fileID: 2973958254273994026, guid: 9ef5e9a7ff68b884ab3dd18703078d5b, type: 3}
+    - {fileID: 6916219004316287602, guid: 9ef5e9a7ff68b884ab3dd18703078d5b, type: 3}
+  - _speed: 7
+    _partName: Main
+    _name: Die
+    _side: Left
+    _sprites:
+    - {fileID: -8856561147952127026, guid: 79353aa31d0609d4b8c24c024373dd19, type: 3}
+    - {fileID: -972642308844862247, guid: 79353aa31d0609d4b8c24c024373dd19, type: 3}
+    - {fileID: -8626287214655417637, guid: 79353aa31d0609d4b8c24c024373dd19, type: 3}
+    - {fileID: -8635685976158842026, guid: 79353aa31d0609d4b8c24c024373dd19, type: 3}
+  - _speed: 7
+    _partName: Main
+    _name: Start Eat
+    _side: Left
+    _sprites:
+    - {fileID: -756326869782614615, guid: 79353aa31d0609d4b8c24c024373dd19, type: 3}
+  - _speed: 7
+    _partName: Main
+    _name: Stop Eat
+    _side: Left
+    _sprites:
+    - {fileID: -756326869782614615, guid: 79353aa31d0609d4b8c24c024373dd19, type: 3}
+  - _speed: 7
+    _partName: Main
+    _name: Start Eat
+    _side: Right
+    _sprites:
+    - {fileID: 3395040512402095274, guid: 9ef5e9a7ff68b884ab3dd18703078d5b, type: 3}
+  - _speed: 7
+    _partName: Main
+    _name: Stop Eat
+    _side: Right
+    _sprites:
+    - {fileID: 3395040512402095274, guid: 9ef5e9a7ff68b884ab3dd18703078d5b, type: 3}
   states: []
   activeStates: 0
 --- !u!114 &1962640996
@@ -3503,10 +3577,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e104a9d52f9bcd949a5616ed8d9e3aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <maxSpeed>k__BackingField: 0
+  <maxSpeed>k__BackingField: 1
   <lastDir>k__BackingField: {x: 0, y: 0}
-  <acceleration>k__BackingField: 0
-  <breakAcceleration>k__BackingField: 0
+  <acceleration>k__BackingField: 15
+  <breakAcceleration>k__BackingField: 15
   <slideSpeed>k__BackingField: 0
   <jumpForce>k__BackingField: 0
   jumpPrepareFrames: 0
@@ -3535,8 +3609,8 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &1962640998
 SpriteRenderer:
@@ -3597,7 +3671,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962640993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.16, y: -1.59, z: -18.486591}
+  m_LocalPosition: {x: 2.69, y: -1.52, z: 0.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3615,13 +3689,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a1157efb601a64bb609275d98ba3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  <partName>k__BackingField: Body
+  <animator>k__BackingField: {fileID: 1962640995}
+  <partName>k__BackingField: Main
   <statesPriority>k__BackingField:
+  - Die
+  - Stop Eat
+  - Start Eat
   - Walk
   - Eat
   - Idle
-  - Die
   <whenChangeSide>k__BackingField: []
   ChangeLayerOnTurn: 0
 --- !u!114 &1962641001
@@ -3636,3 +3712,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00fc7842443f8d944b7f9d3d0466ad63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1962641002
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962640993}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

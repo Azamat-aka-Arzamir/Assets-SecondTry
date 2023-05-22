@@ -7,8 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class AnimationController : MonoBehaviour
 {
-    [SerializeField]
-    private Animator animator;
+    [field: SerializeField]
+    public Animator animator {get; private set; }
     SpriteRenderer spriteRenderer;
     [field: SerializeField]
     public string partName { get; private set; }
@@ -29,7 +29,22 @@ public class AnimationController : MonoBehaviour
             animationController = (AnimationController)target;
             if (animationController.statesPriority == null || animationController.statesPriority.Length == 0)
             {
-                animationController.statesPriority = AnimationSlicer.animNames;
+                if (animationController.animator != null)
+                {
+                    string[] animNames = new string[animationController.animator.animations.Count];
+                    int i = 0;
+                    foreach (var a in animationController.animator.animations)
+                    {
+                        animNames[i] = a.name;
+                        i++;
+                    }
+                }
+                else
+                {
+                    AnimationSlicer a;
+                    animationController.TryGetComponent(out a);
+                    if (a!=null) animationController.statesPriority = animationController.GetComponent<AnimationSlicer>().animNames;
+                } 
             }
         }
     }
@@ -68,8 +83,8 @@ public class AnimationController : MonoBehaviour
 
 
         if (currentStateName == "") throw new System.Exception("No state found "+animator.activeStates);
-        currentAnimation = AnimationSlicer.animations.Find(x => x.partName == partName && x.boolSide == side && x.name == currentStateName);
-        if (currentState != null) spriteRenderer.sprite = currentAnimation.GetSprite(currentState.frameNumber);
+        currentAnimation = animator.animations.Find(x => x.partName == partName && x.boolSide == side && x.name == currentStateName);
+        if (currentState != null) spriteRenderer.sprite = currentAnimation[currentState.frameNumber];
         else throw new System.Exception("Smth's wrong");
 
         int zIndex = 1;

@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Animator : MonoBehaviour
 {
+    public List<Animation> animations;
     public List<State> states;
     public delegate void AnimatorStateDelegate();
     public event AnimatorStateDelegate animatorStateTimer = () => { };
@@ -30,9 +32,28 @@ public class Animator : MonoBehaviour
         animatorStateTimer.Invoke();
     }
 }
+
+
+#if UNITY_EDITOR
+[CanEditMultipleObjects]
+[CustomEditor(typeof(Animator))]
+public class AnimatorEditor:Editor
+{
+    private void OnEnable()
+    {
+        foreach(var a in ((Animator)target).animations)
+        {
+            a.ValidateData();
+        }
+        Debug.Log("sgb");
+    }
+}
+#endif
+
+
 [Serializable]
-public delegate bool Condition();
-[Serializable]
+//public delegate bool Condition();
+//[Serializable]
 public class State
 {
     public bool onlyOnce { get; private set; }
@@ -66,16 +87,22 @@ public class State
         if (frameLength == 0) frameLength = 1;
         frameCount = _frameCount;
         if (frameCount == 0) frameCount = 1;
+        Debug.Log(name + "  " + _condition.simplified);
         condition = _condition;
         frameNumber = 0;
         onlyOnce = _onlyOnce;
     }
+    public State(string _name, int _frameLength, int _frameCount, Func<bool> _condition, bool _onlyOnce)
+    {
+        new State(_name, _frameLength, _frameCount, new Condition(_condition), _onlyOnce);
+    }
     bool lastCondition = true;
     public void Check()
     {
+        Debug.Log(name+"  "+condition.simplified);
         if (!onlyOnce)
         {
-            active = condition();
+            active = condition;
         }
         else
         {
@@ -83,9 +110,9 @@ public class State
             {
                 if (!lastCondition)
                 {
-                    active = condition();
+                    active = condition;
                 }
-                lastCondition = condition();
+                lastCondition = condition;
             }
         }
         var dif = LogComponent.frameCount - lastFrame;
